@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
  */
 export default function HomePage() {
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* 導航列 */}
       <Navigation />
       

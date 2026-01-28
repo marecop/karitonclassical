@@ -8,7 +8,7 @@ import Image from 'next/image';
  */
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       {/* 導航列 */}
       <Navigation />
 

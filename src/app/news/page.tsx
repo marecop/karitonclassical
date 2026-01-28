@@ -47,7 +47,7 @@ export default function NewsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className="pt-8 pb-16">
         {/* 頁面標題區域 */}

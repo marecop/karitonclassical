@@ -40,7 +40,7 @@ export default function ArtistsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Simple Header */}

@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 
 export default function VideosPage() {
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

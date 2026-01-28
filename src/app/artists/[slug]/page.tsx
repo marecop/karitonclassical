@@ -38,7 +38,7 @@ export default function ArtistDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* 麵包屑導航 */}

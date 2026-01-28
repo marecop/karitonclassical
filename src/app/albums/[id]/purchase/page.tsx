@@ -60,7 +60,7 @@ export default async function PurchasePage({ params }: { params: Promise<{ id: s
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-16">
+    <div className="min-h-screen bg-neutral-50">
       {/* 導航列 */}
       <Navigation />
 

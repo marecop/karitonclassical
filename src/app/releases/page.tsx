@@ -11,7 +11,7 @@ export default function ReleasesPage() {
   const allAlbums = getAllAlbums();
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-16">
+    <div className="min-h-screen bg-neutral-50">
       {/* 導航列 */}
       <Navigation />
 
