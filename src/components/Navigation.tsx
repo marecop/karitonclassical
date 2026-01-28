@@ -15,6 +15,7 @@ export default function Navigation({ className = 'bg-white shadow-sm' }: Navigat
   const pathname = usePathname();
 
   const navLinks = [
+    { href: '/', label: '首頁', icon: null },
     { href: '/news', label: '新聞', icon: null },
     { href: '/artists', label: '藝術家', icon: null },
     { href: '/releases', label: '發行', icon: null },
