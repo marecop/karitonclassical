@@ -47,12 +47,12 @@ export default function PlaylistDetailPage() {
   }, [durationsArray.length]);
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-[#121212] text-white flex flex-col font-sans pt-16">
       <Navigation className={scrolled ? "bg-black/90 backdrop-blur-md" : "bg-transparent"} />
       
       <main className="flex-grow pb-[120px]">
         {/* 頂部區域：背景模糊 + 專輯信息 */}
-        <div className="relative pt-24 pb-8 overflow-hidden">
+        <div className="relative pt-8 pb-8 overflow-hidden">
           {/* 背景模糊層 */}
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#121212] z-10"></div>

@@ -11,7 +11,7 @@ export default function PlaylistsPage() {
   const playlists = getAllPlaylists();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16">
       <Navigation />
       
       {/* 標題區域 */}

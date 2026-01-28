@@ -73,7 +73,7 @@ export default async function AlbumDetailPage({ params }: { params: Promise<{ id
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16">
       {/* 導航列 */}
       <Navigation />
 

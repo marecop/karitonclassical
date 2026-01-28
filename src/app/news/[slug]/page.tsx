@@ -104,7 +104,7 @@ export default function ArticlePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16">
       <Navigation />
       
       {/* 麵包屑導航 */}
