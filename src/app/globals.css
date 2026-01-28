@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全域樣式設定 */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* 手機版字體優化 */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900;
+    /* 手機版平滑滾動 */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 手機版觸摸反饋優化 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* 自定義組件樣式 */
+@layer components {
+  /* 按鈕樣式 - 手機版優化 */
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white px-6 py-3 sm:py-2 rounded-md transition-all duration-200 font-medium;
+    /* 手機版最小觸摸目標 */
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  .btn-secondary {
+    @apply bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-400 text-neutral-900 px-6 py-3 sm:py-2 rounded-md transition-all duration-200 font-medium;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* 卡片樣式 - 手機版優化 */
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+    /* 手機版觸摸友好 */
+    touch-action: manipulation;
+  }
+  
+  /* 文字漸變效果 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  }
+  
+  /* 手機版容器優化 */
+  .mobile-container {
+    @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  /* 手機版間距優化 */
+  .mobile-section {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  /* 手機版導航優化 */
+  .mobile-nav-item {
+    @apply block px-4 py-3 text-base font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 rounded-md transition-colors duration-200;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 手機版表單優化 */
+  .mobile-input {
+    @apply w-full px-4 py-3 text-base border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    min-height: 44px;
+  }
+  
+  /* 手機版網格優化 */
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* 手機版文字大小優化 */
+  .mobile-title {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold;
+  }
+  
+  .mobile-subtitle {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .mobile-body {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+  
+  /* 文字截斷 */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* 動畫效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 手機版動畫優化 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+  }
+}
+
+/* 手機版滾動條優化 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* 手機版載入狀態 */
+.loading-skeleton {
+  @apply bg-neutral-200 animate-pulse rounded;
+}
+
+/* 手機版焦點狀態優化 */
+.focus-visible {
+  @apply ring-2 ring-primary-500 ring-offset-2 outline-none;
+}
+
+/* 音樂播放動畫 */
+@keyframes music-bar {
+  0%, 100% { height: 20%; }
+  50% { height: 100%; }
+}
+
+.animate-music-bar-1 {
+  animation: music-bar 0.8s ease-in-out infinite;
+}
+
+.animate-music-bar-2 {
+  animation: music-bar 0.8s ease-in-out infinite 0.2s;
+}
+
+.animate-music-bar-3 {
+  animation: music-bar 0.8s ease-in-out infinite 0.4s;
+}
