@@ -134,7 +134,7 @@ export default function Footer({ className = '' }: FooterProps) {
 
         {/* 版權信息 */}
         <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-neutral-400">
-          <p>&copy; 2025 Kariton Classical. 版權所有。</p>
+          <p>&copy; {new Date().getFullYear()} Kariton Classical. 版權所有。</p>
         </div>
       </div>
     </footer>
