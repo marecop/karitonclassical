@@ -188,7 +188,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         };
         tryGetDuration();
       },
-      onloaderror: (id, error) => {
+      onloaderror: async (id, error) => {
         // Howler.js 錯誤代碼：
         // 1 = Network error (無法獲取音頻文件)
         // 2 = Decode error (音頻解碼失敗)
@@ -210,6 +210,32 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         console.error(`編碼後檔案名: ${encodedFilename}`);
         console.error(`完整 URL: ${src}`);
         console.error(`播放列表: ${playlist.title} (${playlist.folderName})`);
+        
+        // 嘗試提供診斷資訊
+        console.warn('💡 診斷提示：');
+        console.warn('   可以在瀏覽器新標籤頁中嘗試訪問以下 URL 來確認檔案是否存在：');
+        console.warn(`   ${src}`);
+        
+        // 檢查可能的檔案名問題
+        const filenameIssues: string[] = [];
+        if (track.filename.includes('Ouvertüre') && !track.filename.includes('Ouvertüre ')) {
+          filenameIssues.push('檔案名中 "Ouvertüre" 前可能缺少空格');
+        }
+        if (track.filename.includes(')No.') || track.filename.includes(') No.')) {
+          filenameIssues.push('檔案名中括號後可能缺少空格');
+        }
+        if (track.filename.match(/\d{1,3}[A-Z]/)) {
+          filenameIssues.push('檔案名中數字和字母之間可能缺少空格');
+        }
+        if (track.filename.includes('  ')) {
+          filenameIssues.push('檔案名中包含多個連續空格');
+        }
+        
+        if (filenameIssues.length > 0) {
+          console.warn('發現可能的檔案名格式問題：');
+          filenameIssues.forEach(issue => console.warn(`  - ${issue}`));
+        }
+        
         console.error('='.repeat(60));
         
         // 嘗試提供有用的建議
@@ -219,6 +245,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           console.warn('2. 檢查檔案名是否與服務器上的實際檔案名完全匹配（包括大小寫和特殊字符）');
           console.warn('3. 檢查服務器是否正常運行');
           console.warn('4. 檢查網絡連接和 CORS 設置');
+          console.warn('5. 嘗試在瀏覽器中直接訪問 URL 以確認檔案是否存在');
+          console.warn(`   直接訪問: ${src}`);
         }
       },
       onplayerror: (id, error) => {

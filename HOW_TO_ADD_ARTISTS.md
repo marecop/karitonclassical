@@ -1,264 +1,143 @@
-# 如何添加新藝術家 - Kariton Classical
-
-## 📋 概述
-
-本文檔說明如何在 Kariton Classical 網站中添加新的藝術家。系統使用模板化設計，讓您能夠輕鬆管理藝術家資料。
-
-## 🗂️ 文件結構
-
-```
-src/
-├── data/
-│   └── artists.ts           # 藝術家資料庫
-├── app/
-│   └── artists/
-│       ├── page.tsx         # 藝術家列表頁面
-│       └── [slug]/
-│           └── page.tsx     # 藝術家詳情頁面
-public/
-└── images/                  # 藝術家照片存放位置
-```
-
-## ✍️ 添加新藝術家
-
-### 1. 準備藝術家照片
-
-將藝術家照片放置到 `public/images/` 目錄：
-- **檔案格式**: JPG, PNG
-- **建議尺寸**: 800x800 或更高（正方形）
-- **檔案命名**: 使用藝術家姓名，如 `John Smith.JPG`
-
-### 2. 編輯藝術家資料庫
-
-打開 `src/data/artists.ts` 文件，在 `artistsDatabase` 陣列中添加新藝術家：
-
-```typescript
-{
-  id: 'artist-slug',                          // 唯一識別符，用於 URL
-  name: '藝術家姓名',                         // 完整姓名
-  category: 'pianist',                        // 分類（見下方說明）
-  nationality: '國籍',                        // 國籍
-  birthYear: 1990,                           // 出生年份
-  image: '/images/Artist Name.JPG',          // 照片路徑
-  bio: '簡短介紹，約100字...',                // 一句話介紹
-  fullBio: `完整的藝術家傳記...`,             // 詳細傳記（支援 Markdown）
-  achievements: [                            // 重要成就陣列
-    '成就1',
-    '成就2'
-  ],
-  repertoire: [                              // 代表曲目
-    '作品1',
-    '作品2'
-  ],
-  awards: [                                  // 獲得獎項
-    '獎項1',
-    '獎項2'
-  ],
-  education: [                               // 教育背景
-    '學校或導師信息'
-  ],
-  socialMedia: {                             // 社交媒體（可選）
-    website: 'https://...',
-    instagram: '@username',
-    youtube: 'Channel Name',
-    spotify: 'Artist Name'
-  },
-  featured: false,                           // 是否為精選藝術家
-  status: 'active'                           // 狀態：active, retired, historical
-}
-```
-
-## 🎭 藝術家分類
-
-選擇適當的分類：
-
-- **pianist** (🎹) - 鋼琴家
-- **violinist** (🎻) - 小提琴家  
-- **conductor** (🎼) - 指揮家
-- **cellist** (🎻) - 大提琴家
-- **composer** (✍️) - 作曲家
-- **singer** (🎤) - 歌唱家
-- **ensemble** (🎵) - 樂團
-
-## 📝 撰寫藝術家傳記
-
-### 簡短介紹 (bio)
-- 長度：100-150字
-- 內容：主要成就、演奏風格特色
-- 範例：「英國新生代鋼琴家，以其精湛的技巧和深刻的音樂理解力聞名於國際音樂舞台。」
-
-### 完整傳記 (fullBio)
-支援 Markdown 格式：
-
-```markdown
-藝術家姓名 是當代最受矚目的年輕鋼琴家之一。出生於...
-
-## 早期經歷
-描述童年和音樂啟蒙...
-
-## 職業生涯
-重要的演出和成就...
-
-## 藝術風格
-演奏特色和音樂理念...
-```
-
-## 🏆 成就和獎項
-
-### 重要成就 (achievements)
-列出重要的職業里程碑：
-- 國際比賽獲獎
-- 重要樂團合作
-- 專輯發行
-- 教職任命
-
-### 獲得獎項 (awards)
-具體的獎項名稱：
-- 正式獎項名稱
-- 榮譽勳章
-- 學術榮譽
-
-## 🎵 曲目和作品
-
-### 代表曲目 (repertoire)
-- 列出藝術家最知名的演出曲目
-- 包含作曲家和作品名稱
-- 範例：「貝多芬：皇帝協奏曲」
-
-### 唱片作品 (discography) - 可選
-```typescript
-discography: [
-  {
-    title: '專輯名稱',
-    year: 2023,
-    label: '唱片公司',
-    works: ['收錄作品1', '收錄作品2']
-  }
-]
-```
-
-### 即將演出 (upcomingConcerts) - 可選
-```typescript
-upcomingConcerts: [
-  {
-    date: '2025年3月15日',
-    venue: '音樂廳名稱',
-    city: '城市',
-    program: ['演出曲目1', '演出曲目2']
-  }
-]
-```
-
-## 🌟 精選藝術家
-
-設定 `featured: true` 可讓藝術家顯示在首頁精選區域：
-
-```typescript
-featured: true,  // 此藝術家將在首頁顯著展示
-```
-
-**注意**: 建議同時只有2-3位精選藝術家。
-
-## 📱 藝術家頁面URL格式
-
-藝術家頁面URL格式：`/artists/[藝術家ID]`
-
-範例：
-- `clara-ashford` → `/artists/clara-ashford`
-- `heinrich-falkenhorst` → `/artists/heinrich-falkenhorst`
-
-## 🔗 社交媒體整合
-
-可選的社交媒體連結：
-
-```typescript
-socialMedia: {
-  website: 'https://artist-website.com',      // 官方網站
-  instagram: '@artistname',                   // Instagram 用戶名
-  youtube: 'Artist Channel Name',             // YouTube 頻道名
-  spotify: 'Artist Name'                      // Spotify 藝術家名
-}
-```
-
-## 💡 最佳實踐
-
-### ID 命名規則
-- 使用小寫英文
-- 用連字符分隔單詞
-- 具有識別性
-- 保持簡潔
-
-範例：
-- `clara-ashford`
-- `yo-yo-ma`
-- `gustavo-dudamel`
-
-### 照片要求
-- **品質**: 高解析度專業照片
-- **尺寸**: 建議 800x800 像素或更高
-- **格式**: JPG 或 PNG
-- **內容**: 正式演出照或專業肖像
-
-### 內容撰寫
-- **準確性**: 確保所有信息準確無誤
-- **完整性**: 包含重要的職業資訊
-- **可讀性**: 使用清晰易懂的語言
-- **時效性**: 保持信息更新
-
-## 🧪 測試新藝術家
-
-添加藝術家後：
-
-1. 重新啟動開發伺服器：`npm run dev`
-2. 訪問藝術家頁面：`http://localhost:3000/artists`
-3. 檢查新藝術家是否出現在列表中
-4. 點擊藝術家卡片測試詳情頁面
-5. 測試搜尋和篩選功能
-
-## 📊 藝術家統計
-
-系統會自動統計：
-- 各分類的藝術家數量
-- 總藝術家數
-- 活躍藝術家數
-- 國家地區數量
-
-## 🔄 更新現有藝術家
-
-1. 找到對應的藝術家 ID
-2. 修改相應欄位
-3. 保存檔案即可
-
-## 📋 範例藝術家
-
-可參考現有藝術家作為模板：
-
-1. **Clara Ashford** - 鋼琴家範例
-2. **Heinrich Falkenhorst** - 指揮家範例
-3. **Serena Vitale** - 小提琴家範例
-
-## ❓ 常見問題
-
-**Q: 藝術家不顯示怎麼辦？**
-A: 檢查 ID 是否唯一，語法是否正確，重新啟動伺服器。
-
-**Q: 照片無法顯示？**
-A: 確認照片路徑正確，檔案存在於 `public/images/` 目錄。
-
-**Q: 如何設定精選藝術家？**
-A: 設定 `featured: true`，建議同時只有2-3位精選藝術家。
-
-**Q: 分類顯示錯誤？**
-A: 確認 `category` 欄位使用正確的值（pianist, violinist, conductor等）。
-
----
-
-## 📞 技術支援
-
-如有問題請檢查：
-1. 語法是否正確
-2. ID 是否唯一
-3. 照片路徑是否正確
-4. 重新啟動開發伺服器
-
-*讓音樂家們閃耀在 Kariton Classical 的舞台上！🎼*
+Load Error: 4 for track: 5
+onloaderror @ layout-ded9c6705ef52e91.js:1
+[新增] 使用 Copilot in Edge 來解釋主控台錯誤: 點擊
+         
+         以解釋錯誤。
+        深入了解
+        不再顯示
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Christian%20Thielemann%2CWiener%20Philharmoniker%20-%20Erzherzog%20Albrecht-Marsch%2C%20Op.%20136.flac
+layout-ded9c6705ef52e91.js:1 Track 1 loaded, duration: 169.4 seconds (2:49)
+layout-ded9c6705ef52e91.js:1 Track 1 playing, duration: 169.4 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CDaniel%20Barenboim%20-%20Rosen%20Aus%20Dem%20Suden%20Opus%20388.flac
+layout-ded9c6705ef52e91.js:1 Track 2 loaded, duration: 522.6 seconds (8:42)
+layout-ded9c6705ef52e91.js:1 Track 2 playing, duration: 522.6 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Christian%20Thielemann%2CWiener%20Philharmoniker%20-%20WaldmeisterOuvert%C3%BCre.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 3
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Daniel%20Barenboim%2CWiener%20Philharmoniker%20-%20Friedenspalmen%2C%20Walzer%2C%20Op.%20207.flac
+layout-ded9c6705ef52e91.js:1 Track 4 loaded, duration: 542.4 seconds (9:02)
+layout-ded9c6705ef52e91.js:1 Track 4 playing, duration: 542.4 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Rafael%20Kubel%C3%ADk%2CSymphonieorchester%20des%20Bayerischen%20Rundfunks%20-%20M%C3%A1%20vlast%20(My%20Fatherland)No.%203.%20Sarka.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 5
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CYannick%20N%C3%A9zet-S%C3%A9guin%20-%20Zirkus%2C%20Polka%20schnell%2C%20Op.%20110.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 6
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Daniel%20Barenboim%2CWiener%20Philharmoniker%2CJoseph%20Lanner%20-%20Die%20Romantiker%2C%20Walzer%2C%20Op.%20167.flac
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Franz%20Welser-M%C3%B6st%2CWiener%20Philharmoniker%20-%20Wer%20tanzt%20mit%20Polka%20schnell%2C%20Op.%20251.flac
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CYannick%20N%C3%A9zet-S%C3%A9guin%20-%20Donausagen%2C%20Walzer%2C%20Op.%20446.flac
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Franz%20Welser-M%C3%B6st%2CWiener%20Philharmoniker%20-%20Aquarellen%2C%20Op.%20258.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 10
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CYannick%20N%C3%A9zet-S%C3%A9guin%20-%20Donausagen%2C%20Walzer%2C%20Op.%20446.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 9
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Daniel%20Barenboim%2CWiener%20Philharmoniker%2CJoseph%20Lanner%20-%20Die%20Romantiker%2C%20Walzer%2C%20Op.%20167.flac
+layout-ded9c6705ef52e91.js:1 Track 7 loaded, duration: 422.9 seconds (7:02)
+layout-ded9c6705ef52e91.js:1 Track 7 playing, duration: 422.9 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Franz%20Welser-M%C3%B6st%2CWiener%20Philharmoniker%20-%20Aquarellen%2C%20Op.%20258.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 10
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%20-%20Pepita-Polka%2C%20Op.%20138.flac
+layout-ded9c6705ef52e91.js:1 Track 11 loaded, duration: 223 seconds (3:43)
+layout-ded9c6705ef52e91.js:1 Track 11 playing, duration: 223 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CSeiji%20Ozawa%20-%20Wiener%20Blut%20Op.354.flac
+layout-ded9c6705ef52e91.js:1 Track 12 loaded, duration: 517.9 seconds (8:37)
+layout-ded9c6705ef52e91.js:1 Track 12 playing, duration: 517.9 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CSeiji%20Ozawa%20-%20Plappermulchen%20(Chatterboxes)polka%20schnell%20Op.245.flac
+layout-ded9c6705ef52e91.js:1 Track 13 loaded, duration: 177.8 seconds (2:57)
+layout-ded9c6705ef52e91.js:1 Track 13 playing, duration: 177.8 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Furioso-Polka%2C%20Op.%20260.flac
+layout-ded9c6705ef52e91.js:1 Track 14 loaded, duration: 142.4 seconds (2:22)
+layout-ded9c6705ef52e91.js:1 Track 14 playing, duration: 142.4 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Geschichten%20aus%20dem%20Wienerwald%2C%20Walzer%2C%20Op.%20325.flac
+layout-ded9c6705ef52e91.js:1 Track 15 loaded, duration: 749.5 seconds (12:29)
+layout-ded9c6705ef52e91.js:1 Track 15 playing, duration: 749.5 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CHerbert%20von%20Karajan%20-%20Unter%20Donner%20und%20Blitz%2C%20Polka%2C%20Op.324.flac
+layout-ded9c6705ef52e91.js:1 Track 16 loaded, duration: 208.4 seconds (3:28)
+layout-ded9c6705ef52e91.js:1 Track 16 playing, duration: 208.4 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CYannick%20N%C3%A9zet-S%C3%A9guin%20-%20Indigo%20und%20die%20vierzig%20R%C3%A4uberOuvert%C3%BCre.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 17
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Dichter%20und%20BauerOuvert%C3%BCre.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 18
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Roman%20Kurtz%20-%20Oberon%2C%20J.%20306Overture.mp3
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 19
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Freiheits-Marsch%2C%20Op.%20226.flac
+layout-ded9c6705ef52e91.js:1 Track 20 loaded, duration: 160.9 seconds (2:40)
+layout-ded9c6705ef52e91.js:1 Track 20 playing, duration: 160.9 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Lagunen-Walzer%2C%20Op.%20411.flac
+layout-ded9c6705ef52e91.js:1 Track 21 loaded, duration: 502.7 seconds (8:22)
+layout-ded9c6705ef52e91.js:1 Track 21 playing, duration: 502.7 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Riccardo%20Muti%2CWiener%20Philharmoniker%20-%20Entweder%20-%20oder!%2C%20Polka%20schnell%2C%20Op.%20403.flac
+layout-ded9c6705ef52e91.js:1 Track 22 loaded, duration: 160.3 seconds (2:40)
+layout-ded9c6705ef52e91.js:1 Track 22 playing, duration: 160.3 seconds
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Charles%20Dutoit%2COrchestre%20Symphonique%20de%20Montr%C3%A9al%20-%20Swan%20Lake%20Op.20%20TH.12%20%20Act%201No.2%20Valse%20(Corps%20de%20Ballet).flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 23
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Mariss%20Jansons%2CWiener%20Philharmoniker%20-%20Vaterl%C3%A4ndischer-Marsch.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 24
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Wiener%20Philharmoniker%2CYannick%20N%C3%A9zet-S%C3%A9guin%20-%20Neujahrsgru%C3%9F%20%20New%20Year's%20Address%20%20Allocution%20du%20Nouvel%20An.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 25
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Daniel%20Barenboim%2CWiener%20Philharmoniker%20-%20An%20der%20sch%C3%B6nen%20blauen%20Donau%2C%20Walzer%2C%20Op.%20314.flac
+layout-ded9c6705ef52e91.js:1  Load Error: 4 for track: 26
+onloaderror @ layout-ded9c6705ef52e91.js:1
+(匿名) @ 22-647b529522c4e60b.js:1
+setTimeout
+_emit @ 22-647b529522c4e60b.js:1
+_errorListener @ 22-647b529522c4e60b.js:1
+layout-ded9c6705ef52e91.js:1 Loading remote audio from: https://api.flaps1f.com/music/Neujahrkonzert2026/Daniel%20Barenboim%2CWiener%20Philharmoniker%20-%20Radetzky-Marsch%2C%20Op.%20228.flac
+layout-ded9c6705ef52e91.js:1 Track 27 loaded, duration: 233.6 seconds (3:53)
+layout-ded9c6705ef52e91.js:1 Track 27 playing, duration: 233.6 seconds

@@ -52,7 +52,7 @@ Prosit Neujahr!
       },
       {
         id: '3',
-        filename: 'Christian Thielemann,Wiener Philharmoniker - WaldmeisterOuvertüre.flac',
+        filename: 'Christian Thielemann,Wiener Philharmoniker - Waldmeister Ouvertüre.flac',
         title: '輕歌劇《香車葉草》：序曲',
         composer: '約翰·施特勞斯二世',
         originalTitle: 'Waldmeister:Ouvertüre, Op. 259'
@@ -66,7 +66,7 @@ Prosit Neujahr!
       },
       {
         id: '5',
-        filename: 'Rafael Kubelík,Symphonieorchester des Bayerischen Rundfunks - Má vlast (My Fatherland)No. 3. Sarka.flac',
+        filename: 'Rafael Kubelík,Symphonieorchester des Bayerischen Rundfunks - Má vlast (My Fatherland) No. 3. Sarka.flac',
         title: '交響詩《我的祖國》第三樂章：薩爾卡',
         composer: '貝德里赫·斯美塔納',
         originalTitle: 'Má vlast (My Fatherland):No. 3. Sarka'
@@ -150,21 +150,21 @@ Prosit Neujahr!
       },
       {
         id: '17',
-        filename: 'Wiener Philharmoniker,Yannick Nézet-Séguin - Indigo und die vierzig RäuberOuvertüre.flac',
+        filename: 'Wiener Philharmoniker,Yannick Nézet-Séguin - Indigo und die vierzig Räuber Ouvertüre.flac',
         title: '輕歌劇《靛藍和四十強盜》：序曲',
         composer: '約翰·施特勞斯二世',
         originalTitle: 'Indigo und die vierzig Räuber:Ouvertüre'
       },
       {
         id: '18',
-        filename: 'Riccardo Muti,Wiener Philharmoniker - Dichter und BauerOuvertüre.flac',
+        filename: 'Riccardo Muti,Wiener Philharmoniker - Dichter und Bauer Ouvertüre.flac',
         title: '詩人和農民：序曲',
         composer: '弗朗茨·馮·蘇佩',
         originalTitle: 'Dichter und Bauer:Ouvertüre'
       },
       {
         id: '19',
-        filename: 'Roman Kurtz - Oberon, J. 306Overture.mp3',
+        filename: 'Roman Kurtz - Oberon, J. 306 Overture.mp3',
         title: '歌劇《奧伯龍》：序曲',
         composer: '卡爾·瑪麗亞·弗里德里希·恩斯特·馮·韋伯',
         originalTitle: 'Oberon, J. 306:Overture'
@@ -192,7 +192,7 @@ Prosit Neujahr!
       },
       {
         id: '23',
-        filename: 'Charles Dutoit,Orchestre Symphonique de Montréal - Swan Lake Op.20 TH.12  Act 1No.2 Valse (Corps de Ballet).flac',
+        filename: 'Charles Dutoit,Orchestre Symphonique de Montréal - Swan Lake Op.20 TH.12 Act 1 No.2 Valse (Corps de Ballet).flac',
         title: '天鵝湖第二幕：第二圓舞曲',
         composer: '彼得·伊里奇·柴可夫斯基',
         originalTitle: 'Swan Lake Op.20 TH.12 / Act 1:No.2 Valse (Corps de Ballet)'
@@ -206,7 +206,7 @@ Prosit Neujahr!
       },
       {
         id: '25',
-        filename: 'Wiener Philharmoniker,Yannick Nézet-Séguin - Neujahrsgruß  New Year\'s Address  Allocution du Nouvel An.flac',
+        filename: 'Wiener Philharmoniker,Yannick Nézet-Séguin - Neujahrsgruß New Year\'s Address Allocution du Nouvel An.flac',
         title: '新年致辭',
         composer: '黃色愛樂樂團/托尼·施因宇',
         originalTitle: 'Neujahrsgruß / New Year\'s Address / Allocution du Nouvel An'
