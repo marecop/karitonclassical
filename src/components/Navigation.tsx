@@ -30,10 +30,12 @@ export default function Navigation({ className = 'bg-white shadow-sm' }: Navigat
   // 如果傳入的 className 不包含 bg-，則使用默認的背景色
   const containerClass = className.includes('bg-') ? className : `${className} bg-white shadow-sm`;
 
-  // 判斷是否為透明背景（用於播放列表頁）
+  // 判斷是否為透明或深色背景（用於播放列表頁）
   const isTransparent = className.includes('bg-transparent');
-  const textColor = isTransparent ? 'text-white hover:text-gray-300' : 'text-neutral-600 hover:text-red-600';
-  const logoSrc = isTransparent ? '/images/logo.png' : '/images/logo.png'; // 如果有白色 logo 可以替換
+  const isDarkBackground = className.includes('bg-black') || className.includes('backdrop-blur');
+  const isDarkMode = isTransparent || isDarkBackground;
+  const textColor = isDarkMode ? 'text-white hover:text-gray-300' : 'text-neutral-600 hover:text-red-600';
+  const logoSrc = isDarkMode ? '/images/logo.png' : '/images/logo.png'; // 如果有白色 logo 可以替換
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${containerClass}`}>
@@ -49,8 +51,8 @@ export default function Navigation({ className = 'bg-white shadow-sm' }: Navigat
                   className="object-contain"
                 />
               </div>
-              <span className={`font-serif font-bold text-xl ${isTransparent ? 'text-white' : 'text-neutral-900'}`}>
-                Kariton<span className="text-red-600">Classical</span>
+              <span className={`font-serif font-bold text-xl ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
+                Kariton<span className={isDarkMode ? 'text-red-400' : 'text-red-600'}>Classical</span>
               </span>
             </Link>
           </div>
@@ -95,7 +97,7 @@ export default function Navigation({ className = 'bg-white shadow-sm' }: Navigat
             <button
               onClick={toggleMenu}
               className={`inline-flex items-center justify-center p-2 rounded-md ${
-                isTransparent ? 'text-white hover:bg-white/10' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
+                isDarkMode ? 'text-white hover:bg-white/10' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
               } focus:outline-none`}
             >
               {isOpen ? <X className="block w-6 h-6" /> : <Menu className="block w-6 h-6" />}

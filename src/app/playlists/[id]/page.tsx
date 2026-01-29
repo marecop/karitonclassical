@@ -48,7 +48,7 @@ export default function PlaylistDetailPage() {
 
   return (
     <div className="min-h-screen bg-[#121212] text-white flex flex-col font-sans">
-      <Navigation className={scrolled ? "bg-black/90 backdrop-blur-md" : "bg-transparent"} />
+      <Navigation className={scrolled ? "bg-black/90 backdrop-blur-md" : "bg-black/50 backdrop-blur-sm"} />
       
       <main className="flex-grow pb-[120px]">
         {/* 頂部區域：背景模糊 + 專輯信息 */}
