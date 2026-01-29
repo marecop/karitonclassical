@@ -24,6 +24,8 @@ export default function RootLayout({
     <html lang="zh-TW">
       <body className={inter.className}>
         <PlayerProvider>
+          {/* 頁面內容添加 padding-top，避免被 fixed navigation 遮擋 */}
+          {/* Navigation 在 children 中，但因為是 fixed 定位，不受此 padding 影響 */}
           <div className="pt-16">
             {children}
           </div>
