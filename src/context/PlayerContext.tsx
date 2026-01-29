@@ -114,6 +114,9 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     const src = `https://api.flaps1f.com/music/${playlist.folderName}/${encodedFilename}`;
     
     console.log('Loading remote audio from:', src);
+    console.log('Track ID:', track.id);
+    console.log('Original filename:', track.filename);
+    console.log('Encoded filename:', encodedFilename);
     
     const sound = new Howl({
       src: [src],
@@ -127,7 +130,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         if (dur && dur > 0 && !isNaN(dur)) {
           setDuration(dur);
           updateTrackDuration(track.id, dur);
-          console.log(`Track ${track.id} playing, duration: ${dur} seconds`);
+          console.log(`Track ${track.id} playing, duration: ${dur} seconds (${Math.floor(dur / 60)}:${Math.floor(dur % 60).toString().padStart(2, '0')})`);
         } else {
           // 如果時長仍不可用，稍後再試
           setTimeout(() => {
@@ -186,10 +189,42 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         tryGetDuration();
       },
       onloaderror: (id, error) => {
-        console.error("Load Error:", error, "for track:", track.id);
+        // Howler.js 錯誤代碼：
+        // 1 = Network error (無法獲取音頻文件)
+        // 2 = Decode error (音頻解碼失敗)
+        // 3 = Format error (不支持的格式)
+        // 4 = Unknown error (未知錯誤，通常是網絡或服務器問題)
+        const errorMessages: Record<number, string> = {
+          1: '網絡錯誤：無法連接到音頻服務器',
+          2: '解碼錯誤：音頻文件格式損壞或不受支持',
+          3: '格式錯誤：不支持的音頻格式',
+          4: '未知錯誤：可能是文件不存在或服務器問題'
+        };
+        const errorMessage = errorMessages[error] || `錯誤代碼 ${error}`;
+        
+        console.error('='.repeat(60));
+        console.error(`音頻載入失敗 - Track ${track.id}: ${track.title}`);
+        console.error(`錯誤類型: ${errorMessage}`);
+        console.error(`錯誤代碼: ${error}`);
+        console.error(`原始檔案名: ${track.filename}`);
+        console.error(`編碼後檔案名: ${encodedFilename}`);
+        console.error(`完整 URL: ${src}`);
+        console.error(`播放列表: ${playlist.title} (${playlist.folderName})`);
+        console.error('='.repeat(60));
+        
+        // 嘗試提供有用的建議
+        if (error === 4) {
+          console.warn('建議檢查：');
+          console.warn('1. 確認檔案是否存在於遠程服務器上');
+          console.warn('2. 檢查檔案名是否與服務器上的實際檔案名完全匹配（包括大小寫和特殊字符）');
+          console.warn('3. 檢查服務器是否正常運行');
+          console.warn('4. 檢查網絡連接和 CORS 設置');
+        }
       },
       onplayerror: (id, error) => {
-        console.error("Play Error:", error);
+        console.error("播放錯誤:", error);
+        console.error("Track ID:", track.id);
+        console.error("Track title:", track.title);
         sound.once('unlock', () => {
           sound.play();
         });
