@@ -226,6 +226,62 @@ Prosit Neujahr!
         originalTitle: 'Radetzky-Marsch, Op. 228'
       }
     ]
+  },
+  {
+    id: 'ein-heldenleben',
+    title: '英雄生涯',
+    description: `理查·施特勞斯的交響詩《英雄生涯》（Ein Heldenleben, Op. 40）創作於 1898 年，是作曲家最著名的自傳性作品之一。這部宏偉的交響詩描繪了一位英雄從面對敵人到找到伴侶、經歷戰鬥、完成事業，最終達到圓滿的完整人生歷程。
+
+本專輯由赫伯特·馮·卡拉揚（Herbert von Karajan）指揮，展現了這部作品的宏偉氣勢和深刻內涵。六個樂章分別描繪了英雄人生的不同階段，從英雄的登場、對手的挑戰、愛情的滋潤、戰場的考驗，到和平時期的成就，最終達到精神的昇華與圓滿。
+
+演出：Herbert von Karajan
+發行：Kariton Classical`,
+    coverImage: '/images/einheldenleben.PNG',
+    folderName: 'EinHeldenleben',
+    tracks: [
+      {
+        id: '1',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40I. Der Held.flac',
+        title: '第一樂章：英雄',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: I. Der Held'
+      },
+      {
+        id: '2',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40II. Des Helden Widersacher.flac',
+        title: '第二樂章：英雄的對手',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: II. Des Helden Widersacher'
+      },
+      {
+        id: '3',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40III. Des Helden Gefhrtin.mp3',
+        title: '第三樂章：英雄的伴侶',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: III. Des Helden Gefährtin'
+      },
+      {
+        id: '4',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40IV. Des Helden Walstatt.flac',
+        title: '第四樂章：英雄的戰場',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: IV. Des Helden Walstatt'
+      },
+      {
+        id: '5',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40V. Des Helden Friedenswerke.flac',
+        title: '第五樂章：英雄的和平事業',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: V. Des Helden Friedenswerke'
+      },
+      {
+        id: '6',
+        filename: 'Herbert von Karajan - Ein Heldenleben, Op. 40VI. Des Helden Weltflucht und Vollendung.flac',
+        title: '第六樂章：英雄的隱退與圓滿',
+        composer: '理查·施特勞斯',
+        originalTitle: 'Ein Heldenleben, Op. 40: VI. Des Helden Weltflucht und Vollendung'
+      }
+    ]
   }
 ];
 
