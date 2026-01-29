@@ -194,18 +194,19 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         // 2 = Decode error (音頻解碼失敗)
         // 3 = Format error (不支持的格式)
         // 4 = Unknown error (未知錯誤，通常是網絡或服務器問題)
+        const errorCode = typeof error === 'number' ? error : 4; // 默認為未知錯誤
         const errorMessages: Record<number, string> = {
           1: '網絡錯誤：無法連接到音頻服務器',
           2: '解碼錯誤：音頻文件格式損壞或不受支持',
           3: '格式錯誤：不支持的音頻格式',
           4: '未知錯誤：可能是文件不存在或服務器問題'
         };
-        const errorMessage = errorMessages[error] || `錯誤代碼 ${error}`;
+        const errorMessage = errorMessages[errorCode] || `錯誤代碼 ${errorCode}`;
         
         console.error('='.repeat(60));
         console.error(`音頻載入失敗 - Track ${track.id}: ${track.title}`);
         console.error(`錯誤類型: ${errorMessage}`);
-        console.error(`錯誤代碼: ${error}`);
+        console.error(`錯誤代碼: ${errorCode}`);
         console.error(`原始檔案名: ${track.filename}`);
         console.error(`編碼後檔案名: ${encodedFilename}`);
         console.error(`完整 URL: ${src}`);
@@ -239,7 +240,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         console.error('='.repeat(60));
         
         // 嘗試提供有用的建議
-        if (error === 4) {
+        if (errorCode === 4) {
           console.warn('建議檢查：');
           console.warn('1. 確認檔案是否存在於遠程服務器上');
           console.warn('2. 檢查檔案名是否與服務器上的實際檔案名完全匹配（包括大小寫和特殊字符）');
