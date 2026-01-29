@@ -109,13 +109,29 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     // 切換到遠程音樂服務器路徑
     // 基礎 URL: https://api.flaps1f.com/music/
     // 注意：需要確保文件名被正確編碼，以處理空格和特殊字符
-    const encodedFilename = encodeURIComponent(track.filename);
+    // 處理德語特殊字符：如果服務器使用 ASCII 替代字符，需要轉換
+    const normalizeFilename = (filename: string): string => {
+      // 將德語特殊字符轉換為 ASCII 替代字符（服務器可能使用這種格式）
+      return filename
+        .replace(/ü/g, 'ue')
+        .replace(/ö/g, 'oe')
+        .replace(/ä/g, 'ae')
+        .replace(/ß/g, 'ss')
+        .replace(/Ü/g, 'Ue')
+        .replace(/Ö/g, 'Oe')
+        .replace(/Ä/g, 'Ae');
+    };
+    
+    // 先嘗試使用 ASCII 替代字符的檔案名
+    const normalizedFilename = normalizeFilename(track.filename);
+    const encodedFilename = encodeURIComponent(normalizedFilename);
     // 構建遠程 URL
     const src = `https://api.flaps1f.com/music/${playlist.folderName}/${encodedFilename}`;
     
     console.log('Loading remote audio from:', src);
     console.log('Track ID:', track.id);
     console.log('Original filename:', track.filename);
+    console.log('Normalized filename (ASCII):', normalizedFilename);
     console.log('Encoded filename:', encodedFilename);
     
     const sound = new Howl({
