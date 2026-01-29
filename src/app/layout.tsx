@@ -24,7 +24,9 @@ export default function RootLayout({
     <html lang="zh-TW">
       <body className={inter.className}>
         <PlayerProvider>
-          {children}
+          <div className="pt-16">
+            {children}
+          </div>
           <PlayerBar />
         </PlayerProvider>
       </body>
