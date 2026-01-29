@@ -219,15 +219,19 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         
         // 檢查可能的檔案名問題
         const filenameIssues: string[] = [];
-        if (track.filename.includes('Ouvertüre') && !track.filename.includes('Ouvertüre ')) {
+        // 檢查 Ouvertüre 前是否有空格（但排除 " Ouvertüre" 的情況）
+        if (track.filename.includes('Ouvertüre') && !track.filename.match(/\sOuvertüre/)) {
           filenameIssues.push('檔案名中 "Ouvertüre" 前可能缺少空格');
         }
-        if (track.filename.includes(')No.') || track.filename.includes(') No.')) {
+        // 只檢查 ")No." 沒有空格的情況，不檢查 ") No."（有空格是正確的）
+        if (track.filename.includes(')No.') && !track.filename.includes(') No.')) {
           filenameIssues.push('檔案名中括號後可能缺少空格');
         }
-        if (track.filename.match(/\d{1,3}[A-Z]/)) {
+        // 檢查數字和字母之間缺少空格（例如 "306Overture"，但不包括 "306 Overture"）
+        if (track.filename.match(/\d{1,3}[A-Z]/) && !track.filename.match(/\d{1,3}\s[A-Z]/)) {
           filenameIssues.push('檔案名中數字和字母之間可能缺少空格');
         }
+        // 檢查多個連續空格
         if (track.filename.includes('  ')) {
           filenameIssues.push('檔案名中包含多個連續空格');
         }
