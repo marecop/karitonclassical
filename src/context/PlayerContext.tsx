@@ -107,11 +107,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     }
 
     // 切換到遠程音樂服務器路徑
-    // 基礎 URL: http://98.159.109.110/music/
+    // 基礎 URL: https://api.flaps1f.com/music/
     // 注意：需要確保文件名被正確編碼，以處理空格和特殊字符
     const encodedFilename = encodeURIComponent(track.filename);
     // 構建遠程 URL
-    const src = `http://98.159.109.110/music/${playlist.folderName}/${encodedFilename}`;
+    const src = `https://api.flaps1f.com/music/${playlist.folderName}/${encodedFilename}`;
     
     console.log('Loading remote audio from:', src);
     
