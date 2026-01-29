@@ -109,17 +109,77 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     // 切換到遠程音樂服務器路徑
     // 基礎 URL: https://api.flaps1f.com/music/
     // 注意：需要確保文件名被正確編碼，以處理空格和特殊字符
-    // 處理德語特殊字符：如果服務器使用 ASCII 替代字符，需要轉換
+    // 處理特殊字符：如果服務器使用 ASCII 替代字符，需要轉換
     const normalizeFilename = (filename: string): string => {
-      // 將德語特殊字符轉換為 ASCII 替代字符（服務器可能使用這種格式）
+      // 將特殊字符轉換為 ASCII 替代字符（服務器可能使用這種格式）
       return filename
+        // 德語字符
         .replace(/ü/g, 'ue')
         .replace(/ö/g, 'oe')
         .replace(/ä/g, 'ae')
         .replace(/ß/g, 'ss')
         .replace(/Ü/g, 'Ue')
         .replace(/Ö/g, 'Oe')
-        .replace(/Ä/g, 'Ae');
+        .replace(/Ä/g, 'Ae')
+        // 捷克語和其他斯拉夫語字符（常見的）
+        .replace(/á/g, 'a')
+        .replace(/é/g, 'e')
+        .replace(/í/g, 'i')
+        .replace(/ó/g, 'o')
+        .replace(/ú/g, 'u')
+        .replace(/ý/g, 'y')
+        .replace(/ě/g, 'e')
+        .replace(/ř/g, 'r')
+        .replace(/ž/g, 'z')
+        .replace(/š/g, 's')
+        .replace(/č/g, 'c')
+        .replace(/ď/g, 'd')
+        .replace(/ť/g, 't')
+        .replace(/ň/g, 'n')
+        .replace(/ů/g, 'u')
+        .replace(/Á/g, 'A')
+        .replace(/É/g, 'E')
+        .replace(/Í/g, 'I')
+        .replace(/Ó/g, 'O')
+        .replace(/Ú/g, 'U')
+        .replace(/Ý/g, 'Y')
+        .replace(/Ě/g, 'E')
+        .replace(/Ř/g, 'R')
+        .replace(/Ž/g, 'Z')
+        .replace(/Š/g, 'S')
+        .replace(/Č/g, 'C')
+        .replace(/Ď/g, 'D')
+        .replace(/Ť/g, 'T')
+        .replace(/Ň/g, 'N')
+        .replace(/Ů/g, 'U')
+        // 法語和其他拉丁語字符
+        .replace(/è/g, 'e')
+        .replace(/ê/g, 'e')
+        .replace(/ë/g, 'e')
+        .replace(/à/g, 'a')
+        .replace(/â/g, 'a')
+        .replace(/ï/g, 'i')
+        .replace(/î/g, 'i')
+        .replace(/ô/g, 'o')
+        .replace(/ù/g, 'u')
+        .replace(/û/g, 'u')
+        .replace(/ÿ/g, 'y')
+        .replace(/ç/g, 'c')
+        .replace(/È/g, 'E')
+        .replace(/Ê/g, 'E')
+        .replace(/Ë/g, 'E')
+        .replace(/À/g, 'A')
+        .replace(/Â/g, 'A')
+        .replace(/Ï/g, 'I')
+        .replace(/Î/g, 'I')
+        .replace(/Ô/g, 'O')
+        .replace(/Ù/g, 'U')
+        .replace(/Û/g, 'U')
+        .replace(/Ÿ/g, 'Y')
+        .replace(/Ç/g, 'C')
+        // 西班牙語和其他
+        .replace(/ñ/g, 'n')
+        .replace(/Ñ/g, 'N');
     };
     
     // 先嘗試使用 ASCII 替代字符的檔案名
